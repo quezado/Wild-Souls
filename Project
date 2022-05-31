@@ -22,6 +22,9 @@ struct LoginDropDown :View {
             if expand {
                 TextField("Usuário", text: $username)
                     .padding()
+                    .background(LinearGradient(gradient:.init(colors: [.cyan,.cyan]), startPoint: .bottom, endPoint: .bottom))
+                    .cornerRadius(35)
+                
                 NavigationLink("Entrar") {
                     HomeView(name: username)
                     
