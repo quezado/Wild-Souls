@@ -131,7 +131,7 @@ struct DropDown : View {
             }
         }
         .padding()
-        .background(LinearGradient(gradient: .init(colors: [.cyan,.cyan]), startPoint: .bottom, endPoint: .bottom))
+        .background(LinearGradient(gradient: .init(colors: [.blue,.blue]), startPoint: .bottom, endPoint: .bottom))
         .cornerRadius(35)
         .animation(.spring())
         
@@ -160,7 +160,7 @@ struct DropDown : View {
         }
     }
     .padding()
-    .background(LinearGradient(gradient: .init(colors: [.cyan,.cyan]), startPoint: .bottom, endPoint: .bottom))
+    .background(LinearGradient(gradient: .init(colors: [.blue,.blue]), startPoint: .bottom, endPoint: .bottom))
     .cornerRadius(35)
     .animation(.spring())
                     
