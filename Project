@@ -1,48 +1,51 @@
 import SwiftUI
 
+
+struct LoginDropDown :View {
+    @State var expand = false
+    @State var username: String = ""
+    
+    var body : some View{
+        VStack{
+            HStack{
+                Text("Login")
+                .font(.title)
+                .fontWeight(.regular)
+                .multilineTextAlignment(.center)
+                
+            }
+            .onTapGesture {
+                self.expand.toggle()
+                
+            
+            }
+            if expand {
+                TextField("Usuário", text: $username)
+                    .padding()
+                NavigationLink("Entrar") {
+                    HomeView(name: username)
+                    
+                }
+                .disabled(username.isEmpty)
+                .navigationTitle("Unwaste")
+                
+            }
+            
+        }
+        .padding()
+        .background(LinearGradient(gradient:.init(colors: [.black,.black]), startPoint: .bottom, endPoint: .bottom))
+        .cornerRadius(35)
+        .animation(.spring())
+    }
+    
+}
+
 struct HomeView: View {
     
     let name: String
     
     init(name: String) {
         self.name = name
-    }
-    
-    struct ContentView: View {
-        @State var username: String = ""
-        var body: some View {
-            NavigationView {
-                VStack {
-                    Text("Locais de descarte de eletrônicos e como o descarte indevido pode afetar sua vida.")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .padding([.leading, .bottom, .trailing], 20.0)
-                    
-                    NavigationLink("Entrar") {
-                        
-                        Text("Login")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .multilineTextAlignment(.center)
-                        TextField("Usuário", text: $username)
-                        
-                            .padding()
-                        NavigationLink("Pronto") {
-                            HomeView(name: username)
-                            
-                        }
-                        .disabled(username.isEmpty)
-                        
-                    }
-                    
-                    .navigationTitle("Unwaste")
-                    
-                    
-                }
-                
-            }
-            
-        }
     }
     
     var body: some View {
@@ -62,6 +65,7 @@ struct HomeView: View {
         .padding()
         NavigationLink("Dúvidas Frequentes") {
             DropDown()
+            
         }
         .padding()
         .navigationTitle("Olá, \(name)")
@@ -74,25 +78,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                
-                NavigationLink("Entrar") {
-                    
-                    Text("Login")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .multilineTextAlignment(.center)
-                    TextField("Usuário", text: $username)
-                    
-                        .padding()
-                    NavigationLink("Pronto") {
-                        HomeView(name: username)
-                        
-                    }
-                    .disabled(username.isEmpty)
-                    
-                }
-                
-                .navigationTitle("Unwaste")
+                LoginDropDown()
+                    .navigationTitle("Unwaste")
                 
                 
             }
@@ -101,8 +88,6 @@ struct ContentView: View {
         
     }
 }
-
-
 struct DropDown : View {
     
     @State var expandone = false
@@ -168,3 +153,13 @@ struct DropDown : View {
 
     }
 }
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ContentView()
+                .preferredColorScheme(.dark)
+        }
+    }
+}
+
